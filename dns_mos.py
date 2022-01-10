@@ -78,8 +78,8 @@ def main(args):
             f = open(os.path.join(dir_path, 'file_mos.txt'), 'a+')
             audio, fs = sf.read(fpath)
             if fs != 16000:
-                audio = librosa.resample(audio, fs, target_sr=16000)
-                print('Only sampling rate of 16000 is supported as of now')
+                print('Resample to 16k')
+                audio = librosa.resample(audio, orig_sr=fs, target_sr=16000)
             data = {"data": audio.tolist(), "filename": os.path.basename(fpath)}
             input_data = json.dumps(data)
             # Make the request and display the response
