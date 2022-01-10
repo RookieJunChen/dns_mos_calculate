@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import requests
 import soundfile as sf
+import librosa
 
 from urllib.parse import urlparse, urljoin
 
@@ -39,10 +40,12 @@ def main(args):
     #     r'./online_samples/gate_unet_mini_rt_stcm_Separableonv2d_mini_speccompress_sisnr_compressmse_mini_epoch27/score.csv']
 
     args.testset_dir = [
-        r'D:\音频\fullsubnet_plus\synetic\without_reverb\fullsubnet\enhanced_0073']
+        r'D:\数据集\noisy\neighbor',
+        r'D:\数据集\noisy\no_neighbor']
 
     args.score_file = [
-        r'./test_2/score.csv']
+        r'./noisy_neighbor/score.csv',
+        r'./noisy_no_neighbor/score.csv']
 
     for idx in range(len(args.testset_dir)):
         print(args.testset_dir[idx])
@@ -75,6 +78,7 @@ def main(args):
             f = open(os.path.join(dir_path, 'file_mos.txt'), 'a+')
             audio, fs = sf.read(fpath)
             if fs != 16000:
+                audio = librosa.resample(audio, fs, target_sr=16000)
                 print('Only sampling rate of 16000 is supported as of now')
             data = {"data": audio.tolist(), "filename": os.path.basename(fpath)}
             input_data = json.dumps(data)
