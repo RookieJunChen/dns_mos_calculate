@@ -96,17 +96,24 @@ def main(args):
                 except:
                     try_flag = 1
                     print('retry')
-            score_dict['file_name'] = os.path.basename(fpath)
-            if args.method == 'p808':
-                f.write(score_dict['file_name'] + ' ' + str(score_dict['mos']) + '\n')
-                print(score_dict['mos'], ' ', score_dict['file_name'])
-            else:
-                f.write(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
-                                                                                      score_dict['mos_bak'],
-                                                                                      score_dict['mos_ovr']) + '\n')
-                print(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
-                                                                                      score_dict['mos_bak'],
-                                                                                      score_dict['mos_ovr']))
+                try:
+                    score_dict['file_name'] = os.path.basename(fpath)
+                    if args.method == 'p808':
+                        f.write(score_dict['file_name'] + ' ' + str(score_dict['mos']) + '\n')
+                        print(score_dict['mos'], ' ', score_dict['file_name'])
+                    else:
+                        f.write(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
+                                                                                              score_dict['mos_bak'],
+                                                                                              score_dict['mos_ovr']) + '\n')
+                        print(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
+                                                                                              score_dict['mos_bak'],
+                                                                                          score_dict['mos_ovr']))
+                    try_flag = 0
+                except:
+                    try_flag = 1
+                    print('retry')
+
+
             f.close()
 
             scores.append(score_dict)
