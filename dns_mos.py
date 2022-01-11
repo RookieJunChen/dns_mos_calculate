@@ -40,10 +40,10 @@ def main(args):
     #     r'./online_samples/gate_unet_mini_rt_stcm_Separableonv2d_mini_speccompress_sisnr_compressmse_mini_epoch27/score.csv']
 
     args.testset_dir = [
-        r'D:\数据集\noisy\no_neighbor']
+        r'D:\数据集\yukai\neighbor']
 
     args.score_file = [
-        r'./noisy_no_neighbor/score.csv']
+        r'./yukai_11_neighbor/score.csv']
 
     for idx in range(len(args.testset_dir)):
         print(args.testset_dir[idx])
@@ -70,7 +70,7 @@ def main(args):
             utt_id = fpath.split('\\')[-1].split('.wav')[0]
             # print('utt_id', utt_id)
             if utt_id in dict:
-                # print('find uttid', utt_id)
+                print('find uttid', utt_id)
                 continue
             flag = 1
             f = open(os.path.join(dir_path, 'file_mos.txt'), 'a+')
@@ -103,19 +103,17 @@ def main(args):
                     else:
                         f.write(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
                                                                                               score_dict['mos_bak'],
-                                                                                              score_dict['mos_ovr']) + '\n')
+                                                                                              score_dict[
+                                                                                                  'mos_ovr']) + '\n')
                         print(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
-                                                                                              score_dict['mos_bak'],
-                                                                                          score_dict['mos_ovr']))
+                                                                                            score_dict['mos_bak'],
+                                                                                            score_dict['mos_ovr']))
                     try_flag = 0
                 except:
                     try_flag = 1
                     print('retry_2')
                     continue
-
-
             f.close()
-
             scores.append(score_dict)
         if flag:
             df = pd.DataFrame(scores)
