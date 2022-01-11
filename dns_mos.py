@@ -40,11 +40,9 @@ def main(args):
     #     r'./online_samples/gate_unet_mini_rt_stcm_Separableonv2d_mini_speccompress_sisnr_compressmse_mini_epoch27/score.csv']
 
     args.testset_dir = [
-        r'D:\数据集\noisy\neighbor',
         r'D:\数据集\noisy\no_neighbor']
 
     args.score_file = [
-        r'./noisy_neighbor/score.csv',
         r'./noisy_no_neighbor/score.csv']
 
     for idx in range(len(args.testset_dir)):
@@ -95,7 +93,8 @@ def main(args):
                     score_dict = resp.json()
                 except:
                     try_flag = 1
-                    print('retry')
+                    print('retry_1')
+                    continue
                 try:
                     score_dict['file_name'] = os.path.basename(fpath)
                     if args.method == 'p808':
@@ -111,7 +110,8 @@ def main(args):
                     try_flag = 0
                 except:
                     try_flag = 1
-                    print('retry')
+                    print('retry_2')
+                    continue
 
 
             f.close()
@@ -137,7 +137,7 @@ if __name__ == "__main__":
                         help='Path to the dir containing audio clips to be evaluated')
     parser.add_argument('--score_file', default=r'./谱修复测试集_yuanjun/noisy/score.csv',
                         help='If you want the scores in a CSV file provide the full path')
-    parser.add_argument('--method', default='p808', const='p808', nargs='?', choices=['p808', 'p835'],
+    parser.add_argument('--method', default='p835', const='p808', nargs='?', choices=['p808', 'p835'],
                         help='Choose which method to compute P.808 or P.835. Default is P.808')
     args = parser.parse_args()
     main(args)
