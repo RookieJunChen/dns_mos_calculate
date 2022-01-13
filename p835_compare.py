@@ -62,9 +62,6 @@ file_name2 = "C:/Users/thujunchen/Desktop/SE工作/DNSMOS/yukai_11_no_neighbor/f
 counter = 3000
 list1 = read_from_txt(file_name1, counter)
 list2 = read_from_txt(file_name2, counter)
-SIG, BAK, OVR = get_score(list1)
-print(file_name1 + " " + "SIG={}, BAK={}, OVR={}".format(SIG, BAK, OVR))
-
 
 same_str_1, same_str_2 = get_the_same(list1, list2)
 
@@ -74,5 +71,4 @@ SIG, BAK, OVR = get_score(same_str_1)
 print(file_name1 + " " + "SIG={}, BAK={}, OVR={}".format(SIG, BAK, OVR))
 SIG, BAK, OVR = get_score(same_str_2)
 print(file_name2 + " " + "SIG={}, BAK={}, OVR={}".format(SIG, BAK, OVR))
-# SIG, BAK, OVR = get_score(read_from_txt(file_name, counter))
-# print("SIG={}, BAK={}, OVR={}".format(SIG, BAK, OVR))
+
