@@ -40,10 +40,10 @@ def main(args):
     #     r'./online_samples/gate_unet_mini_rt_stcm_Separableonv2d_mini_speccompress_sisnr_compressmse_mini_epoch27/score.csv']
 
     args.testset_dir = [
-        r'D:\数据集\yukai\neighbor']
+        r'D:\数据集\noisy\neighbor']
 
     args.score_file = [
-        r'./yukai_11_neighbor/score.csv']
+        r'./noisy_neighbor/score.csv']
 
     for idx in range(len(args.testset_dir)):
         print(args.testset_dir[idx])
@@ -103,8 +103,7 @@ def main(args):
                     else:
                         f.write(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
                                                                                               score_dict['mos_bak'],
-                                                                                              score_dict[
-                                                                                                  'mos_ovr']) + '\n')
+                                                                                              score_dict['mos_ovr']) + '\n')
                         print(score_dict['file_name'] + ' SIG[{}], BAK[{}], OVR[{}]'.format(score_dict['mos_sig'],
                                                                                             score_dict['mos_bak'],
                                                                                             score_dict['mos_ovr']))
