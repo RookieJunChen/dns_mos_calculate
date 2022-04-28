@@ -37,7 +37,7 @@ def get_score(str_list):
     return np.mean(sig_list), np.mean(bak_list), np.mean(ovr_list)
 
 
-file_name = "C:/Users/thujunchen/Desktop/SE工作/DNSMOS/noisy_no_neighbor/file_mos.txt"
+file_name = "C:/Users/thujunchen/Desktop/SE工作/DNSMOS/yukai_15_no_neighbor/file_mos.txt"
 
 counter = 3000
 list = read_from_txt(file_name, counter)
