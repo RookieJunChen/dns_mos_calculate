@@ -101,6 +101,9 @@ def main(args):
 
     rows = []
     clips = []
+    sig_list = []
+    bak_list = []
+    ovrl_list = []
     clips = glob.glob(os.path.join(args.testset_dir, "*.wav"))
     is_personalized_eval = args.personalized_MOS
     desired_fs = SAMPLING_RATE
@@ -124,7 +127,11 @@ def main(args):
                 print('%r generated an exception: %s' % (clip, exc))
             else:
                 rows.append(data)
+                sig_list.append(data['SIG'])
+                bak_list.append(data['BAK'])
+                ovrl_list.append(data['OVRL'])
 
+    print("SIG: {}  BAK: {} OVR: {}".format(np.mean(sig_list), np.mean(bak_list), np.mean(ovrl_list)))
     df = pd.DataFrame(rows)
     if args.csv_path:
         csv_path = args.csv_path
